@@ -30,6 +30,7 @@ Partial Class Form1
         Me.HardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LabelScore = New System.Windows.Forms.Label()
         Me.LabelMines = New System.Windows.Forms.Label()
+        Me.btnResetGame = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -45,7 +46,7 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DifficultyToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(238, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(249, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -96,11 +97,22 @@ Partial Class Form1
         Me.LabelMines.TabIndex = 3
         Me.LabelMines.Text = "Label2"
         '
+        'btnResetGame
+        '
+        Me.btnResetGame.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnResetGame.Location = New System.Drawing.Point(87, 23)
+        Me.btnResetGame.Name = "btnResetGame"
+        Me.btnResetGame.Size = New System.Drawing.Size(43, 33)
+        Me.btnResetGame.TabIndex = 4
+        Me.btnResetGame.Text = "=)"
+        Me.btnResetGame.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(238, 320)
+        Me.ClientSize = New System.Drawing.Size(249, 320)
+        Me.Controls.Add(Me.btnResetGame)
         Me.Controls.Add(Me.LabelMines)
         Me.Controls.Add(Me.LabelScore)
         Me.Controls.Add(Me.Panel1)
@@ -124,4 +136,5 @@ Partial Class Form1
     Friend WithEvents HardToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LabelScore As Label
     Friend WithEvents LabelMines As Label
+    Friend WithEvents btnResetGame As Button
 End Class
