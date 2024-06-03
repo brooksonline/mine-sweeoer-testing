@@ -8,6 +8,7 @@
     Private currentSize As Integer
     Private currentMineCount As Integer
     Private buttonSize As Integer = 30
+    Private currentDifficulty As String
 
     Private buttons(,) As Button
     Private mines(,) As Boolean
@@ -52,6 +53,7 @@
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitializeGame(easySize, easyMines)
+        currentDifficulty = "Easy"
     End Sub
 
     Private Sub InitializeGame(size As Integer, mineCount As Integer)
@@ -124,13 +126,12 @@
         Dim row As Integer = index \ currentSize
         Dim col As Integer = index Mod currentSize
 
-        If Flagged1(row, col) Then Return ' Ignore click if flagged
+        If Flagged1(row, col) Then Return 'ignore click if flagged
 
         If Mines1(row, col) Then
-            btn.Text = "M"
+            btn.Image = My.Resources.bomb
             btn.BackColor = Color.Red
             MessageBox.Show("Game Over!")
-            ' Optionally: Disable all buttons or reset the game
         Else
             btn.Text = Numbers1(row, col).ToString()
             btn.Enabled = False
@@ -182,17 +183,26 @@
 
     Private Sub EasyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EasyToolStripMenuItem.Click
         InitializeGame(easySize, easyMines)
+        currentDifficulty = "Easy"
     End Sub
 
     Private Sub MediumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MediumToolStripMenuItem.Click
         InitializeGame(mediumSize, mediumMines)
+        currentDifficulty = "Medium"
     End Sub
 
     Private Sub HardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HardToolStripMenuItem.Click
         InitializeGame(hardSize, hardMines)
+        currentDifficulty = "Hard"
     End Sub
 
     Private Sub btnResetGame_Click(sender As Object, e As EventArgs) Handles btnResetGame.Click
-
+        If currentDifficulty = "Easy" Then
+            InitializeGame(easySize, easyMines)
+        ElseIf currentDifficulty = "Medium" Then
+            InitializeGame(mediumSize, mediumMines)
+        Else currentDifficulty = "Hard"
+            InitializeGame(hardSize, hardMines)
+        End If
     End Sub
 End Class
