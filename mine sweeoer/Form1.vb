@@ -71,7 +71,10 @@
         PlaceMines()
         CalculateNumbers()
         UpdateMineCount()
+        EnableAllButtons()
     End Sub
+
+
 
     Private Sub InitializeGrid()
         For i As Integer = 0 To currentSize - 1
@@ -101,27 +104,29 @@
     End Sub
 
     Private Sub CalculateNumbers()
+        'this sub calculates the number of mines surrounding each cell in a grid
         For i As Integer = 0 To currentSize - 1
             For j As Integer = 0 To currentSize - 1
-                If Not Mines1(i, j) Then
+                If Not Mines1(i, j) Then 'if the cell isnt a mine then
                     Dim count As Integer = 0
                     For x As Integer = -1 To 1
                         For y As Integer = -1 To 1
+                            'check all surrounding cells
                             If i + x >= 0 And i + x < currentSize And j + y >= 0 And j + y < currentSize Then
                                 If Mines1(i + x, j + y) Then
-                                    count += 1
+                                    count += 1 'counts if there is a mine around the cell
                                 End If
                             End If
                         Next
                     Next
-                    Numbers1(i, j) = count
+                    Numbers1(i, j) = count 'store this count in numbers1 to display in the score textbox
                 End If
             Next
         Next
     End Sub
 
     Private Sub Button_Click(sender As Object, e As EventArgs)
-        Dim btn As Button = DirectCast(sender, Button)
+        Dim btn As Button = DirectCast(sender, Button) 'cool function that casts sender to button so i can access properties
         Dim index As Integer = Panel1.Controls.IndexOf(btn)
         Dim row As Integer = index \ currentSize
         Dim col As Integer = index Mod currentSize
@@ -129,15 +134,19 @@
         If Flagged1(row, col) Then Return 'ignore click if flagged
 
         If Mines1(row, col) Then
-            btn.Image = My.Resources.bomb
+            btn.Text = "M"
             btn.BackColor = Color.Red
-            MessageBox.Show("Game Over!")
+            MsgBox("game overr")
+            DisableAllButtons()
         Else
-            btn.Text = Numbers1(row, col).ToString()
+            btn.Text = If(Numbers1(row, col) > 0, Numbers1(row, col).ToString(), "")
             btn.Enabled = False
+            UpdateScore()
+            CheckForWin()
         End If
-        UpdateScore()
     End Sub
+
+
 
     Private Sub Button_RightClick(sender As Object, e As MouseEventArgs)
         If e.Button = MouseButtons.Right Then
@@ -205,4 +214,40 @@
             InitializeGame(hardSize, hardMines)
         End If
     End Sub
+    Private Sub CheckForWin()
+        Dim revealedCells As Integer = 0
+
+        For i As Integer = 0 To currentSize - 1
+            For j As Integer = 0 To currentSize - 1
+                If Not Buttons1(i, j).Enabled AndAlso Not Mines1(i, j) Then
+                    revealedCells += 1
+                End If
+            Next
+        Next
+
+        If revealedCells = (currentSize * currentSize) - currentMineCount Then
+            MsgBox("you win the game!")
+            DisableAllButtons()
+        End If
+    End Sub
+
+    Private Sub DisableAllButtons()
+        For i As Integer = 0 To currentSize - 1
+            For j As Integer = 0 To currentSize - 1
+                Buttons1(i, j).Enabled = False
+            Next
+        Next
+    End Sub
+
+    Private Sub EnableAllButtons()
+        For i As Integer = 0 To currentSize - 1
+            For j As Integer = 0 To currentSize - 1
+                Buttons1(i, j).Enabled = True
+                Buttons1(i, j).Text = ""
+                Buttons1(i, j).Image = Nothing
+                Buttons1(i, j).BackColor = SystemColors.Control
+            Next
+        Next
+    End Sub
+
 End Class

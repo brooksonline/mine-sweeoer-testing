@@ -92,7 +92,7 @@ Partial Class Form1
         Me.LabelMines.AutoSize = True
         Me.LabelMines.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.LabelMines.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMines.Location = New System.Drawing.Point(136, 24)
+        Me.LabelMines.Location = New System.Drawing.Point(167, 24)
         Me.LabelMines.Name = "LabelMines"
         Me.LabelMines.Size = New System.Drawing.Size(72, 27)
         Me.LabelMines.TabIndex = 3
@@ -101,7 +101,7 @@ Partial Class Form1
         'btnResetGame
         '
         Me.btnResetGame.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnResetGame.Location = New System.Drawing.Point(87, 23)
+        Me.btnResetGame.Location = New System.Drawing.Point(114, 22)
         Me.btnResetGame.Name = "btnResetGame"
         Me.btnResetGame.Size = New System.Drawing.Size(43, 33)
         Me.btnResetGame.TabIndex = 4
@@ -112,7 +112,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(271, 320)
+        Me.ClientSize = New System.Drawing.Size(271, 350)
         Me.Controls.Add(Me.btnResetGame)
         Me.Controls.Add(Me.LabelMines)
         Me.Controls.Add(Me.LabelScore)
